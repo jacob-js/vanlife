@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 
-function Navbar() {
+function Header() {
   return (
     <header>
         <Link className="site-logo" to="/">#VanLife</Link>
         <nav>
+          <Link to="/host">Host</Link>
           <Link to="/about">About</Link>
           <Link to="/vans">Vans</Link>
         </nav>
@@ -12,4 +13,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default Header
