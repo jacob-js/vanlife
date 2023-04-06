@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, Outlet, NavLink } from "react-router-dom"
 
 export default function HostVanDetail() {
     const { id } = useParams()
@@ -18,8 +18,7 @@ export default function HostVanDetail() {
     return (
         <section>
             <Link
-                to='..'
-                relative="path"
+                to=".."
                 className="back-button"
             >&larr; <span>Back to all vans</span></Link>
             <div className="host-van-detail-layout-container">
@@ -35,6 +34,32 @@ export default function HostVanDetail() {
                         <h4>${currentVan.price}/day</h4>
                     </div>
                 </div>
+
+                <nav className="host-van-detail-nav">
+                    <NavLink
+                        to="."
+                        end
+                        className={({isActive}) => isActive ? "active-link" : null}
+                    >
+                        Details
+                    </NavLink>
+
+                    <NavLink
+                        to="pricing"
+                        className={({isActive}) => isActive ? "active-link" : null}
+                    >
+                        Pricing
+                    </NavLink>
+
+                    <NavLink
+                        to="photos"
+                        className={({isActive}) => isActive ? "active-link" : null}
+                    >
+                        Photos
+                    </NavLink>
+
+                </nav>
+                <Outlet context={{currentVan}} />
             </div>
         </section>
     )
