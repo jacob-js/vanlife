@@ -5,6 +5,8 @@ function VanDetails() {
     const params = useParams()
     const location = useLocation();
     const [van, setVan] = useState(null);
+    const filterState = location.state?.search;
+    const vansType = filterState && (new URLSearchParams(filterState)).get('type');
 
     useEffect(() => {
         fetch(`/api/vans/${params.id}`)
@@ -15,10 +17,10 @@ function VanDetails() {
   return (
     <div className="van-detail-container">
         <Link
-            to={{ pathname: '..', search: location.state?.search }}
+            to={{ pathname: '..', search: filterState }}
             relative='path'
             className="back-button"
-        >&larr; <span>Back to all vans</span></Link>
+        >&larr; <span>Back to {vansType || "all"} vans</span></Link>
         {van ? (
             <div className="van-detail">
                 <img src={van.imageUrl} />
