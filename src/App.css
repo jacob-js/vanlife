@@ -446,3 +446,9 @@ i[class*='van-type-'] {
   height: 100px;
   border-radius: 5px;
 }
+
+.van-list-filter-buttons{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

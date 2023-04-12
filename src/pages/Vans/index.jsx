@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+
+const TYPES = ["simple", "luxury", "rugged"];
 
 function Vans() {
-    const [vans, setVans] = useState([])
+    const [vans, setVans] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const typeParams = searchParams.get('type');
 
     useEffect(() => {
         fetch("/api/vans")
@@ -13,6 +17,12 @@ function Vans() {
   return (
     <div className="van-list-container">
         <h1>Explore our van options</h1>
+        <div className="van-list-filter-buttons">
+            {
+                TYPES.map(type => <Link to={`?type=${type}`} className={ `van-type ${type} ${typeParams === type ? 'selected': ''}`} key={type}>{type}</Link>)
+            }
+            <Link className='van-type clear-filters' to=".">Clear filter</Link>
+        </div>
         <div className="van-list">
             {
                 vans.map(van => (
