@@ -5,7 +5,7 @@ import About from './pages/About'
 import Vans from './pages/Vans/Vans'
 
 import "./server"
-import VanDetails from './pages/VanDetails'
+import VanDetails from './pages/Vans/VanDetails'
 import Layout from './components/Layout'
 import HostLayout from './components/HostLayout'
 import Income from './pages/Host/Income'
