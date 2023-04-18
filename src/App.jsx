@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
-import Vans from './pages/Vans'
+import Vans from './pages/Vans/Vans'
 
 import "./server"
 import VanDetails from './pages/VanDetails'

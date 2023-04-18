@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { getVans } from '../../api';
 
 const TYPES = ["simple", "luxury", "rugged"];
 
@@ -9,9 +10,12 @@ function Vans() {
     const typeParams = searchParams.get('type');
 
     useEffect(() => {
-        fetch("/api/vans")
-            .then(res => res.json())
-            .then(data => setVans(data.vans))
+        async function loadVans() {
+            const data = await getVans()
+            setVans(data)
+        }
+        
+        loadVans()
     }, [])
 
   return (
