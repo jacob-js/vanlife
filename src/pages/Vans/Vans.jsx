@@ -8,11 +8,14 @@ function Vans() {
     const [vans, setVans] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const typeParams = searchParams.get('type');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function loadVans() {
+            setLoading(true)
             const data = await getVans()
             setVans(data)
+            setLoading(false)
         }
         
         loadVans()
@@ -29,22 +32,26 @@ function Vans() {
                 typeParams && <button className='van-type clear-filters' onClick={() =>setSearchParams({})}>Clear filter</button>
             }
         </div>
-        <div className="van-list">
-            {
-                vans.map(van => (
-                    <div key={van.id} className="van-tile">
-                        <Link to={van.id} state={{search: searchParams.toString()}}>
-                            <img src={van.imageUrl} />
-                            <div className="van-info">
-                                <h3>{van.name}</h3>
-                                <p>${van.price}<span>/day</span></p>
-                            </div>
-                            <i className={`van-type ${van.type} selected`}>{van.type}</i>
-                        </Link>
-                    </div>
-                ))
-            }
-        </div>
+        {
+            loading ?
+            <div>Loading...</div>:
+            <div className="van-list">
+                {
+                    vans.map(van => (
+                        <div key={van.id} className="van-tile">
+                            <Link to={van.id} state={{search: searchParams.toString()}}>
+                                <img src={van.imageUrl} />
+                                <div className="van-info">
+                                    <h3>{van.name}</h3>
+                                    <p>${van.price}<span>/day</span></p>
+                                </div>
+                                <i className={`van-type ${van.type} selected`}>{van.type}</i>
+                            </Link>
+                        </div>
+                    ))
+                }
+            </div>
+        }
     </div>
   )
 }
