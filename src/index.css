@@ -1,3 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.active-link {
+    font-weight: bold !important;
+    text-decoration: underline !important;
+    color: #161616 !important
+}
