@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { getVans } from '../../api';
 
+export function vansLoader(){
+    return "Vans data go here"
+}
+
 const TYPES = ["simple", "luxury", "rugged"];
 
 function Vans() {

@@ -2,7 +2,7 @@ import './App.css'
 import { Route, RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
-import Vans from './pages/Vans/Vans'
+import Vans, { vansLoader } from './pages/Vans/Vans'
 
 import "./server"
 import VanDetails from './pages/Vans/VanDetails'
@@ -22,7 +22,7 @@ const router = createHashRouter(createRoutesFromElements(
   <Route element={<Layout />}>
     <Route index element={<Home />} />
     <Route path='about' element={<About />} />
-    <Route path='vans' element={<Vans />} />
+    <Route path='vans' element={<Vans />} loader={vansLoader} />
     <Route path='vans/:id' element={<VanDetails />} />
     <Route path="host" element={<HostLayout />}>
       <Route index element={<Dashboard />} />
