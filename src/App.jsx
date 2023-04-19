@@ -2,10 +2,10 @@ import './App.css'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
-import Vans from './pages/Vans'
+import Vans from './pages/Vans/Vans'
 
 import "./server"
-import VanDetails from './pages/VanDetails'
+import VanDetails from './pages/Vans/VanDetails'
 import Layout from './components/Layout'
 import HostLayout from './components/HostLayout'
 import Income from './pages/Host/Income'
@@ -16,6 +16,7 @@ import HostVanDetail from './pages/Host/HostVanDetail'
 import HostVanPricing from './pages/Host/HostVanPricing'
 import HostVanInfo from './pages/Host/HostVanInfo'
 import HostVanPhotos from './pages/Host/HostVanPhotos'
+import NotFound from './pages/NotFound'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
               </Route>
             </Route>
           </Route>
+          <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
