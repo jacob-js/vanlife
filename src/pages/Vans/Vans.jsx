@@ -6,6 +6,7 @@ const TYPES = ["simple", "luxury", "rugged"];
 
 function Vans() {
     const [vans, setVans] = useState([]);
+    const [displayedVans, setDisplayedVans] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const typeParams = searchParams.get('type');
     const [loading, setLoading] = useState(false);
@@ -27,6 +28,13 @@ function Vans() {
         loadVans()
     }, []);
 
+    useEffect(() =>{
+        (() =>{
+            if(typeParams) setDisplayedVans(vans.filter(van => van.type === typeParams));
+            else setDisplayedVans(vans)
+        })()
+    }, [vans, typeParams])
+
     if(error){
         return <h1>There was an error: {error.message}</h1>
     }
@@ -47,7 +55,7 @@ function Vans() {
             <div>Loading...</div>:
             <div className="van-list">
                 {
-                    vans?.map(van => (
+                    displayedVans?.map(van => (
                         <div key={van.id} className="van-tile">
                             <Link to={van.id} state={{search: searchParams.toString()}}>
                                 <img src={van.imageUrl} />
