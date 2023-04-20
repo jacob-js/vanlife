@@ -1,18 +1,15 @@
-import { useEffect, useState } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLoaderData, useLocation } from 'react-router-dom'
+import { getVans } from '../../api';
+
+export function loader({params}) {
+    return getVans(params.id)
+}
 
 function VanDetails() {
-    const params = useParams()
     const location = useLocation();
-    const [van, setVan] = useState(null);
+    const van = useLoaderData();
     const filterState = location.state?.search;
     const vansType = filterState && (new URLSearchParams(filterState)).get('type');
-
-    useEffect(() => {
-        fetch(`/api/vans/${params.id}`)
-            .then(res => res.json())
-            .then(data => setVan(data.vans))
-    }, [params.id])
 
   return (
     <div className="van-detail-container">

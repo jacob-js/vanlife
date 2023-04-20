@@ -5,7 +5,7 @@ import About from './pages/About'
 import Vans, { vansLoader } from './pages/Vans/Vans'
 
 import "./server"
-import VanDetails from './pages/Vans/VanDetails'
+import VanDetails, { loader as vanLoader } from './pages/Vans/VanDetails'
 import Layout from './components/Layout'
 import HostLayout from './components/HostLayout'
 import Income from './pages/Host/Income'
@@ -24,8 +24,10 @@ const router = createHashRouter(createRoutesFromElements(
     <Route index element={<Home />} />
     <Route path='about' element={<About />} />
     <Route path='vans' element={<Vans />} loader={vansLoader} errorElement={<Error />} />
-    <Route path='vans/:id' element={<VanDetails />} />
-    <Route path="host" element={<HostLayout />}>
+    <Route path='vans/:id' element={<VanDetails />} loader={vanLoader} />
+    <Route path="host" element={<HostLayout />} loader={async function(){
+      return null
+    }}>
       <Route index element={<Dashboard />} />
       <Route path="income" element={<Income />} />
       <Route path="reviews" element={<Reviews />} />
