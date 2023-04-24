@@ -18,10 +18,15 @@ import HostVanInfo from './pages/Host/HostVanInfo'
 import HostVanPhotos from './pages/Host/HostVanPhotos'
 import NotFound from './pages/NotFound'
 import Error from './components/Error'
+import Login from './pages/Login'
 
 const router = createHashRouter(createRoutesFromElements(
   <Route element={<Layout />}>
     <Route index element={<Home />} />
+    <Route
+      path="login"
+      element={<Login />}
+    />
     <Route path='about' element={<About />} />
     <Route path='vans' element={<Vans />} loader={vansLoader} errorElement={<Error />} />
     <Route path='vans/:id' element={<VanDetails />} loader={vanLoader} />
