@@ -1,6 +1,6 @@
-function throwError(res){
+function throwError(res, message){
     throw {
-        message: "Failed to fetch vans", 
+        message: message || "Failed to fetch vans", 
         statusText: res.statusText,
         status: res.status
     }
@@ -20,4 +20,15 @@ export async function getHostVans(id){
     if (!res.ok) return throwError(res)
     const data = await res.json()
     return data.vans
+}
+
+export async function loginUser(creds) {
+    const res = await fetch("/api/login",
+        { method: "post", body: JSON.stringify(creds) }
+    )
+    const data = await res.json()
+
+    if (!res.ok) return throwError(res, data?.message)
+
+    return data
 }
