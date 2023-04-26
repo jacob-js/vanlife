@@ -18,7 +18,7 @@ import HostVanInfo from './pages/Host/HostVanInfo'
 import HostVanPhotos from './pages/Host/HostVanPhotos'
 import NotFound from './pages/NotFound'
 import Error from './components/Error'
-import Login, {loader as loginLoader} from './pages/Login'
+import Login, {loader as loginLoader, action as loginAction} from './pages/Login'
 import { requireAuth } from './utils'
 
 const router = createHashRouter(createRoutesFromElements(
@@ -28,6 +28,7 @@ const router = createHashRouter(createRoutesFromElements(
       path="login"
       element={<Login />}
       loader={loginLoader}
+      action={loginAction}
     />
     <Route path='about' element={<About />} />
     <Route path='vans' element={<Vans />} loader={vansLoader} errorElement={<Error />} />
