@@ -33,11 +33,10 @@ const router = createHashRouter(createRoutesFromElements(
     <Route path='about' element={<About />} />
     <Route path='vans' element={<Vans />} loader={vansLoader} errorElement={<Error />} />
     <Route path='vans/:id' element={<VanDetails />} loader={vanLoader} />
-    <Route path="host" element={<HostLayout />} loader={async() => await requireAuth()}>
+    <Route path="host" element={<HostLayout />} loader={async({request}) => await requireAuth(request)}>
       <Route 
         index 
         element={<Dashboard />}
-        loader={async() => await requireAuth()}
       />
       <Route path="income" element={<Income />} />
       <Route path="reviews" element={<Reviews />} />
