@@ -31,6 +31,7 @@ function Header() {
                 <img 
                     src="/avatar-icon.png" 
                     className="login-icon"
+                    alt='Login'
                 />
             </Link>
             <button onClick={fakeLogOut}>X</button>
