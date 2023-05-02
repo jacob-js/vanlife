@@ -4,7 +4,6 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Vans, { vansLoader } from './pages/Vans/Vans'
 
-import "./server"
 import VanDetails, { loader as vanLoader } from './pages/Vans/VanDetails'
 import Layout from './components/Layout'
 import HostLayout from './components/HostLayout'
@@ -20,6 +19,7 @@ import NotFound from './pages/NotFound'
 import Error from './components/Error'
 import Login, {loader as loginLoader, action as loginAction} from './pages/Login'
 import { requireAuth } from './utils'
+import "./server"
 
 const router = createHashRouter(createRoutesFromElements(
   <Route element={<Layout />}>
