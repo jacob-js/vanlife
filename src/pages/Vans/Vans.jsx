@@ -9,18 +9,9 @@ export async function vansLoader(){
 const TYPES = ["simple", "luxury", "rugged"];
 
 function Vans() {
-    // const vans = useLoaderData();
-    // const [displayedVans, setDisplayedVans] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const typeParams = searchParams.get('type');
     const loaderData = useLoaderData();
-
-    // useEffect(() =>{
-    //     (() =>{
-    //         if(typeParams) setDisplayedVans(vans.filter(van => van.type === typeParams));
-    //         else setDisplayedVans(vans)
-    //     })()
-    // }, [vans, typeParams])
 
   return (
     <div className="van-list-container">
@@ -34,10 +25,11 @@ function Vans() {
             }
         </div>
         <Suspense fallback={<>Loading...</>}>
-                <div className="van-list">
+            <div className="van-list">
             <Await resolve={loaderData.vans}>
-                        {(vans) =>(
-                            vans.map(van => (
+                        {(vans) =>{
+                            const displayedVans = typeParams ? vans.filter(van => van.type === typeParams): vans;
+                            return displayedVans.map(van => (
                                 <div key={van.id} className="van-tile">
                                     <Link to={van.id} state={{search: searchParams.toString()}}>
                                         <img src={van.imageUrl} />
@@ -49,26 +41,10 @@ function Vans() {
                                     </Link>
                                 </div>
                             ))
-                        )}
+                        }}
             </Await>
-                </div>
+            </div>
         </Suspense>
-        {/* <div className="van-list">
-            {
-                displayedVans?.map(van => (
-                    <div key={van.id} className="van-tile">
-                        <Link to={van.id} state={{search: searchParams.toString()}}>
-                            <img src={van.imageUrl} />
-                            <div className="van-info">
-                                <h3>{van.name}</h3>
-                                <p>${van.price}<span>/day</span></p>
-                            </div>
-                            <i className={`van-type ${van.type} selected`}>{van.type}</i>
-                        </Link>
-                    </div>
-                ))
-            }
-        </div> */}
     </div>
   )
 }
