@@ -9,7 +9,7 @@ import Layout from './components/Layout'
 import HostLayout from './components/HostLayout'
 import Income from './pages/Host/Income'
 import Reviews from './pages/Host/Reviews'
-import Dashboard from './pages/Host/Dashboard'
+import Dashboard, {loader as dashboardVansLoader} from './pages/Host/Dashboard'
 import HostVans, {loader as hostVansLoader} from './pages/Host/HostVans'
 import HostVanDetail, {loader as hostVanLoader } from './pages/Host/HostVanDetail'
 import HostVanPricing from './pages/Host/HostVanPricing'
@@ -35,7 +35,8 @@ const router = createHashRouter(createRoutesFromElements(
     <Route path='vans/:id' element={<VanDetails />} loader={vanLoader} />
     <Route path="host" element={<HostLayout />} loader={async({request}) => await requireAuth(request)}>
       <Route 
-        index 
+        index
+        loader={dashboardVansLoader}
         element={<Dashboard />}
       />
       <Route path="income" element={<Income />} />
